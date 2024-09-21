@@ -1,0 +1,29 @@
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+#gjs {
+  height: 100vh;
+  position: relative;
+}
+
+.page-drag {
+  width: 150px;
+  height: 50px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.page-drag i {
+  margin-right: 5px;
+}

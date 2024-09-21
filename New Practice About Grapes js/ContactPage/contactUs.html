@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>Home Page</title>
+  <style>
+    .carousel-item img {
+      object-fit: cover;
+      max-height: 600px;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">My Web</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Items</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Carousel -->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true"
+        aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://source.unsplash.com/1600x600?landscape" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Welcome to My Website</h2>
+          <h3>Discover Amazing Content</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-8 mb-5">
+          <h3>Popular This Week</h3>
+          <p class="lead text-muted">Check out our top picks of the week, from stunning visuals to inspiring stories.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <img class="img-fluid" src="https://source.unsplash.com/random/400x300?car" alt="Random Image">
+          <h3>Luxury Cars</h3>
+          <p>Explore the latest models of luxury cars. <a href="#" class="text-dark">Shop now</a></p>
+        </div>
+        <div class="col-md-7 mb-4">
+          <img class="img-fluid" src="https://source.unsplash.com/random/600x400?fashion" alt="Random Image">
+          <h3>Trending Fashion</h3>
+          <p>Stay updated with the latest fashion trends. <a href="#" class="text-dark">Shop now</a></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <img class="img-fluid" src="https://source.unsplash.com/random/400x300?technology" alt="Random Image">
+          <h3>Innovative Tech</h3>
+          <p>Discover cutting-edge technology and gadgets. <a href="#" class="text-dark">Shop now</a></p>
+        </div>
+        <div class="col-md-7 mb-4">
+          <img class="img-fluid" src="https://source.unsplash.com/random/600x400?travel" alt="Random Image">
+          <h3>Travel the World</h3>
+          <p>Plan your next adventure to amazing destinations. <a href="#" class="text-dark">Shop now</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-light py-3">
+    <div class="container">
+      <p class="text-center mb-0">&copy; 2024 My Web. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

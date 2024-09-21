@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrapesJS with Multiple Pages</title>
+  <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+    }
+
+    #gjs {
+      height: 100vh;
+      position: relative;
+    }
+
+    .page-drag {
+      width: 150px;
+      height: 50px;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div id="gjs"></div>
+  <div id="page-drag" class="page-drag">
+    Add Page
+  </div>
+
+  <script src="https://unpkg.com/grapesjs"></script>
+  <script src="https://unpkg.com/grapesjs-pages"></script>
+  <script src="https://unpkg.com/grapesjs-blocks-basic"></script>
+  <script src="https://unpkg.com/grapesjs-preset-webpage"></script>
+  <script src="https://unpkg.com/grapesjs-tailwind"></script>
+  <script src="https://unpkg.com/grapesjs-plugin-forms"></script>
+  <script src="https://unpkg.com/grapesjs-component-countdown"></script>
+  <script src="https://unpkg.com/grapesjs-navbar"></script>
+  <script src="https://unpkg.com/grapesjs-plugin-export"></script>
+  <script src="https://unpkg.com/grapesjs-style-bg"></script>
+  <script src="grapeJs/index.js"></script>
+</body>
+</html>

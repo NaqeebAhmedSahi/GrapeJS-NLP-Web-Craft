@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrapeJS Multi-Page Website Builder</title>
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css">
+    <style>
+        /* Make sure the editor covers the full height */
+        body, html {
+            margin: 0;
+            height: 100%;
+        }
+
+        /* Main container for the editor and buttons */
+        #editor-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Editor should take all available space */
+        #gjs {
+            flex-grow: 1;
+            border: 2px solid #3b3b3b;
+            background-color: #f4f4f4;
+        }
+
+        /* Buttons container (above editor) */
+        #buttons-container {
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+
+        /* Styling for buttons */
+        #pagesList button,
+        #addPageBtn, 
+        #downloadBtn {
+            padding: 10px 20px;
+            background-color: #5a67d8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #pagesList button:hover,
+        #addPageBtn:hover, 
+        #downloadBtn:hover {
+            background-color: #4c51bf;
+        }
+
+        #pagesList {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for buttons and the GrapeJS editor -->
+    <div id="editor-container">
+        <!-- Buttons for adding pages and downloading the website -->
+        <div id="buttons-container">
+            <button id="addPageBtn">Add Page</button>
+            <button id="downloadBtn">Download Website</button>
+            <div id="pagesList"></div>
+        </div>
+
+        <!-- GrapeJS Editor -->
+        <div id="gjs"></div>
+    </div>
+
+    <!-- GrapeJS and JSZip libraries -->
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script>
+        // Initialize GrapeJS editor with all functionalities (panels, blocks, styles)
+        const editor = grapesjs.init({
+            container: '#gjs',
+            height: '100%',
+            width: 'auto',
+            fromElement: true,
+            storageManager: false, // Disable the storage manager to handle saving manually
+            plugins: ['gjs-blocks-basic', 'gjs-preset-webpage'],
+            pluginsOpts: {
+                'gjs-preset-webpage': {}
+            },
+            panels: { defaults: [] }
+        });
+
+        // Adding Panels and Block Manager
+        editor.Panels.addPanel({
+            id: 'basic-actions',
+            el: '.panel__basic-actions',
+            buttons: [
+                {
+                    id: 'visibility',
+                    active: true, // active by default
+                    className: 'btn-toggle-borders',
+                    label: 'Borders',
+                    command: 'sw-visibility', // Built-in command
+                }, {
+                    id: 'export',
+                    className: 'btn-open-export',
+                    label: 'Export',
+                    command: 'export-template',
+                    context: 'export-template', // For grouping context of buttons from the same panel
+                }, {
+                    id: 'show-json',
+                    className: 'btn-show-json',
+                    label: 'JSON',
+                    context: 'show-json',
+                    command(editor) {
+                        editor.Modal.setTitle('Components JSON')
+                        .setContent(`<textarea style="width:100%; height: 250px;">
+                            ${JSON.stringify(editor.getComponents())}
+                        </textarea>`)
+                        .open();
+                    },
+                }
+            ],
+        });
+
+        // Manage pages and content
+        const pages = {};
+        let currentPage = 'page1';
+
+        // Function to add a new page
+        const addPage = (pageName) => {
+            if (!pages[pageName]) {
+                pages[pageName] = editor.getHtml();
+                const pageBtn = document.createElement('button');
+                pageBtn.innerText = pageName;
+                pageBtn.addEventListener('click', () => loadPage(pageName));
+                document.getElementById('pagesList').appendChild(pageBtn);
+            }
+        };
+
+        // Function to load a page
+        const loadPage = (pageName) => {
+            if (pages[pageName]) {
+                pages[currentPage] = editor.getHtml(); // Save current page content
+                currentPage = pageName;
+                editor.setComponents(pages[pageName]); // Load new page content
+            }
+        };
+
+        // Add a default page
+        addPage('page1');
+
+        // Add more pages on button click
+        document.getElementById('addPageBtn').addEventListener('click', () => {
+            const pageName = `page${Object.keys(pages).length + 1}`;
+            addPage(pageName);
+            loadPage(pageName); // Load the newly created page
+        });
+
+        // Download all pages as a zip file
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            // First, save the current page's content
+            pages[currentPage] = editor.getHtml();
+
+            // Create a new JSZip instance
+            const zip = new JSZip();
+            
+            // Add each page's HTML to the zip
+            Object.keys(pages).forEach(pageName => {
+                zip.file(`${pageName}.html`, `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${pageName}</title>
+</head>
+<body>
+${pages[pageName]}
+</body>
+</html>
+`);
+            });
+
+            // Generate the zip and trigger download
+            zip.generateAsync({ type: 'blob' }).then(content => {
+                saveAs(content, 'website.zip');
+            });
+        });
+    </script>
+</body>
+</html>

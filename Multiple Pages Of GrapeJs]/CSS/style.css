@@ -1,0 +1,62 @@
+/* Main editor container */
+#gjs {
+    border: 2px solid #3b3b3b;
+    height: 600px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Container for page management buttons */
+#pagesList {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Style for individual page buttons */
+#pagesList button {
+    padding: 10px 15px;
+    background-color: #5a67d8;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect on buttons */
+#pagesList button:hover {
+    background-color: #4c51bf;
+}
+
+/* Add page button */
+#addPageBtn {
+    padding: 10px 20px;
+    background-color: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+/* Hover effect on Add Page button */
+#addPageBtn:hover {
+    background-color: #38a169;
+}
+
+/* Adjust button container responsiveness */
+@media (max-width: 768px) {
+    #pagesList {
+        flex-direction: column;
+    }
+
+    #pagesList button {
+        width: 100%;
+    }
+}
