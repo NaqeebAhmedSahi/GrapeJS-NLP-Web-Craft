@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #333;
+    padding: 10px 20px;
+    z-index: 10;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .nav-links li {
+    margin-left: 20px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+  }
+  
+  .landing-section {
+    height: 100vh;
+    background: linear-gradient(to right, #1c1c1c, #434343);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .content h1 {
+    color: white;
+    font-size: 3em;
+    animation: fadeInDown 1s ease-in-out;
+  }
+  
+  .content p {
+    color: white;
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  
+  .cta-btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: #ff5733;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    border-radius: 5px;
+    animation: bounce 2s infinite;
+  }
+  
+  .features-section, .about-section, .contact-section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .features-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .feature {
+    width: 30%;
+  }
+  
+  .feature i {
+    font-size: 2.5em;
+    color: #ff5733;
+  }
+  
+  .feature h3 {
+    margin-top: 10px;
+    font-size: 1.5em;
+  }
+  
+  .contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .contact-form button {
+    padding: 10px 20px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  /* Animations */
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  
