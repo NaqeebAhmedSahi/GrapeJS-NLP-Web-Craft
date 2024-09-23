@@ -117,9 +117,19 @@ body {
 }
 
 .home .wrapper-login {
-    position: relative;
-    width: 440px;
+  position: relative;
+  width: 440px;
+  padding: 20px; /* Add padding on all sides */
+  backdrop-filter: blur(2px); /* Adjust the value for more or less blur */
+  background-color: rgba(0, 0, 0, 0.5); /* Background with transparency */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  color: white; /* Text color */
+  font-family: Arial, sans-serif; /* Attractive font */
+  text-align: center; /* Center text */
 }
+
+
 
 .wrapper-login h2 {
     font-size: 2em;
@@ -382,4 +392,24 @@ body {
 
 .footer a:hover {
     text-decoration: underline; /* Underline on hover */
+}
+.wrapper-login {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.slide-out {
+  animation: slideOut 0.5s forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideOut {
+  0% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(-100%); }
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateX(100%); }
+  100% { opacity: 1; transform: translateX(0); }
 }

@@ -1,111 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grapes: NLP Web Craft</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <style>
+        /* Add the following CSS for slide animations */
+        .wrapper-login {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            position: relative;
+            opacity: 1;
+        }
+
+        .slide-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .slide-in {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Initially hide the sign-up and forgot password forms */
+        #signUpForm, #forgotPasswordForm {
+            display: none;
+        }
+    </style>
+</head>
+<body>
     <header class="header">
-      <a href="#" class="logo"
-        ><ion-icon name="logo-web-component"></ion-icon> Grapes: NLP Web
-        Craft</a
-      >
-      <nav class="nav">
-        <a href="#"> Home </a>
-        <a href="features.html"> Features </a>
-        <a href="aboutUs.html"> About </a
-        ><a href="contactus.html"> Contact </a>
-      </nav>
+        <a href="#" class="logo"><ion-icon name="logo-web-component"></ion-icon> Grapes: NLP Web Craft</a>
+        <nav class="nav">
+            <a href="#"> Home </a>
+            <a href="features.html"> Features </a>
+            <a href="aboutUs.html"> About </a>
+            <a href="contactus.html"> Contact </a>
+        </nav>
     </header>
 
-    
-        <section class="home">
-            <div class="content">
-                <h2 id="ai-title"></h2>
-                <p id="ai-description"></p>
-              </p>
-        
-          
-        <a href="#">Get Started</a>
-      </div>
+    <section class="home">
+        <div class="content">
+            <h2 id="ai-title"></h2>
+            <p id="ai-description"></p>
+            <a href="#">Get Started</a>
+        </div>
 
-      <div class="wrapper-login">
-        <h2>Member Login</h2>
-        <form action="#">
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="mail-open-sharp"></ion-icon>
-                </span>
-                <input type="email" required />
-                <label>Enter Your Email</label>
-            </div>
-            
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed"></ion-icon>
-                </span>
-                <input type="password" required />
-                <label>Enter Your Password</label>
-            </div>
-            
+        <div class="wrapper-login" id="signInForm">
+            <h2>Member Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="email" required />
+                    <label>Enter Your Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required />
+                    <label>Enter Your Password</label>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="#" id="registerLink">Register</a></p>
+                    <p><a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
+                </div>
+            </form>
+        </div>
 
-          <!-- Move checkbox here below the input -->
-          <div class="remember-forgot">
-            <label> <input type="checkbox" /> Remember Me </label>
-            <a href="#">Forgot Password</a>
-          </div>
+        <div class="wrapper-login" id="signUpForm">
+            <h2>Member Sign Up</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="text" required />
+                    <label>Enter Your Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="email" required />
+                    <label>Enter Your Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required />
+                    <label>Enter Your Password</label>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="register-link">
+                    <p>Already have an account? <a href="#" id="signInLink">Sign In</a></p>
+                </div>
+            </form>
+        </div>
 
-          <button type="submit" class="btn">Login</button>
-          <div class="register-link">
-            <p>Don't have an account? <a href="signUp.html">Register</a></p>
-          </div>
-        </form>
-      </div>
+        <div class="wrapper-login" id="forgotPasswordForm" style="display: none;">
+            <h2>Reset Password</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="text" required />
+                    <label>Enter Your Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required />
+                    <label>Enter New Password</label>
+                </div>
+                <button type="submit" class="btn">Reset Password</button>
+                <div class="register-link">
+                    <p>Remembered your password? <a href="#" id="signInLinkForgot">Sign In</a></p>
+                </div>
+            </form>
+        </div>
     </section>
+
     <footer class="footer">
         <p>&copy; 2024 Grapes: NLP Web Craft. All rights reserved.</p>
     </footer>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-          function typeWriterEffect(element, text, speed) {
-            let i = 0;
-            function type() {
-              if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-              }
+            function typeWriterEffect(element, text, speed) {
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                element.innerHTML = ""; // Clear the content first
+                type();
             }
-            element.innerHTML = ""; // Clear the content first
-            type();
-          }
-      
-          const title = document.getElementById("ai-title");
-          const description = document.getElementById("ai-description");
-      
-          const titleText = "Unleash Your Creativity with AI-Powered Web Design";
-          const descriptionText = `Grapes: NLP Web Craft is the future of web design. 
-            Powered by advanced Natural Language Processing (NLP) technology, this AI-driven platform transforms 
-            your ideas into fully functional websites effortlessly.`;
-      
-          // Apply the typewriter effect for title and description
-          typeWriterEffect(title, titleText, 100); // Typing effect for title
-          setTimeout(() => {
-            typeWriterEffect(description, descriptionText, 50); // Typing effect for description
-          }, 2000); // Starts typing the description after a 2-second delay
+
+            const title = document.getElementById("ai-title");
+            const description = document.getElementById("ai-description");
+
+            const titleText = "Unleash Your Creativity with AI-Powered Web Design";
+            const descriptionText = `Grapes: NLP Web Craft is the future of web design. 
+                Powered by advanced Natural Language Processing (NLP) technology, this AI-driven platform transforms 
+                your ideas into fully functional websites effortlessly.`;
+
+            // Apply the typewriter effect for title and description
+            typeWriterEffect(title, titleText, 100); // Typing effect for title
+            setTimeout(() => {
+                typeWriterEffect(description, descriptionText, 50); // Typing effect for description
+            }, 2000); // Starts typing the description after a 2-second delay
+
+            const signInForm = document.getElementById("signInForm");
+            const signUpForm = document.getElementById("signUpForm");
+            const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+
+            function resetForm(form) {
+                form.classList.remove("slide-out", "slide-in");
+                form.style.display = "none"; // Ensure it is hidden after resetting
+            }
+
+            function toggleForms(hideForm, showForm) {
+                hideForm.classList.add("slide-out"); // Slide out the current form
+
+                setTimeout(() => {
+                    hideForm.style.display = "none"; // Hide the current form
+                    hideForm.classList.remove("slide-out"); // Reset the slide-out class
+                    resetForm(showForm); // Reset the incoming form
+                    showForm.style.display = "block"; // Show the new form
+                    showForm.offsetHeight; // Trigger reflow to restart the animation
+                    showForm.classList.add("slide-in"); // Slide in the new form
+                }, 500); // Match this timeout to the duration of your animation
+            }
+
+            document.getElementById("registerLink").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(signInForm, signUpForm); // Toggle to sign-up form
+            });
+
+            document.getElementById("signInLink").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(signUpForm, signInForm); // Toggle to sign-in form
+            });
+
+            // New event listener for the "Forgot Password" link
+            document.getElementById("forgotPasswordLink").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(signInForm, forgotPasswordForm); // Toggle to forgot password form
+            });
+
+            // New event listener for signing back in from the forgot password form
+            document.getElementById("signInLinkForgot").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(forgotPasswordForm, signInForm); // Toggle back to sign-in form
+            });
         });
-      </script>
-      
-      
+    </script>
+
     <script
       type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.esm.js"
     ></script>
     <script
       nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.js"
     ></script>
-  </body>
+</body>
 </html>
