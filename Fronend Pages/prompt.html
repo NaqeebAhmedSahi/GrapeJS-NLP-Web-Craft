@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grapes: NLP Web Craft - Prompt Selection</title>
+    
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="prompt.css">
+    
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.js"
+    ></script>
+
+    <style>
+        .radio-label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            height: 100%; /* Full height for equal sizing */
+            padding: 20px; /* Add some padding */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Optional: white border */
+            border-radius: 10px; /* Optional: rounded corners */
+            background-color: rgba(255, 255, 255, 0.1); /* Optional: slightly transparent background */
+        }
+        .radio-box {
+            display: none; /* Hide radio button */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"><ion-icon name="logo-web-component"></ion-icon> Grapes: NLP Web Craft</a>
+        <nav class="nav">
+            <a href="#"> Home </a>
+            <a href="features.html"> Features </a>
+            <a href="aboutUs.html"> About </a>
+            <a href="contactus.html"> Contact </a>
+        </nav>
+    </header>
+    
+    <section class="home">
+        <div class="portable"></div>
+        <div class="container">
+            <h2 class="text-center mb-4 text-white">Select Your Project Type</h2>
+            <p class="text-center text-white mb-4">Choose the type of AI-powered web builder you'd like to create. Whether it's for an E-commerce site, a personal blog, or a portfolio, we've got you covered!</p>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <input type="radio" id="prompt1" name="prompt" class="radio-box" />
+                    <label for="prompt1" class="radio-label">
+                        <strong>E-commerce Builder</strong>
+                        Create a powerful online store with AI-generated layouts, product pages, and shopping cart functionality.
+                    </label>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <input type="radio" id="prompt2" name="prompt" class="radio-box" />
+                    <label for="prompt2" class="radio-label">
+                        <strong>Blog Builder</strong>
+                        Start your own blog with beautiful templates, AI-generated content suggestions.
+                    </label>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <input type="radio" id="prompt3" name="prompt" class="radio-box" />
+                    <label for="prompt3" class="radio-label">
+                        <strong>Portfolio Builder</strong>
+                        Showcase your skills and <ion-icon name="send-outline"></ion-icon> projects with an AI-designed portfolio that highlights your work in the best way possible.
+                    </label>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-8 col-sm-12 mx-auto">
+                    <label for="website-input" class="text-white">You can write a prompt for the creation of your specific website:</label>
+                    <div class="input-group">
+                        <input type="text" id="website-input" class="form-control" placeholder="e.g., 'I want to build an e-commerce site for handmade crafts that includes product categories, user reviews, and a shopping cart.'" aria-label="Project Details" aria-describedby="submit-btn">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="submit-btn">
+                                <ion-icon name="send-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="text-center">&copy; 2024 Grapes: NLP Web Craft. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

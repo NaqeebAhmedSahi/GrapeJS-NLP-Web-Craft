@@ -86,7 +86,16 @@ body {
     z-index: -1; /* Ensure the background is behind the content */
     transform: scale(1.1); /* Slight scaling to ensure no edges show up */
 }
-
+.home::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  z-index: -1; /* Ensure it's behind the content but above the image */
+}
 
 .home .content {
     max-width: 600px;
