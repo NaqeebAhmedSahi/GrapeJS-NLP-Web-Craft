@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multipage Website Editor</title>
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/grapesjs"></script>
+    <link href="https://unpkg.com/grapesjs-indexeddb-ui/dist/grapesjs-indexeddb-ui.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/grapesjs-indexeddb-ui"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="gjs"></div>
+    <script>
+        const editor = grapesjs.init({
+            container: '#gjs',
+            height: '100%',
+            fromElement: true,
+            storageManager: {
+                id: 'gjs-',
+                type: 'indexeddb',
+            },
+            plugins: ['grapesjs-indexeddb-ui'],
+        });
+
+        const pageList = {}; // To store page HTML/CSS data
+        let currentPage = 'index.html'; // Default first page
+
+        // Function to save the current page to IndexedDB
+        function saveCurrentPage() {
+            const html = editor.getHtml();
+            const css = editor.getCss();
+            pageList[currentPage] = { html, css };
+
+            const dbName = 'gjs-multipage';
+            const request = indexedDB.open(dbName);
+            request.onsuccess = (event) => {
+                const db = event.target.result;
+                const transaction = db.transaction(['pages'], 'readwrite');
+                const store = transaction.objectStore('pages');
+                store.put(pageList[currentPage], currentPage);
+                alert(currentPage + ' saved!');
+            };
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                db.createObjectStore('pages');
+            };
+        }
+
+        // Add panel buttons
+        const pn = editor.Panels;
+        const panelOpts = pn.addPanel({
+            id: 'options'
+        });
+
+        panelOpts.get('buttons').add([{
+            attributes: {
+                title: 'New Page'
+            },
+            className: 'fa fa-plus',
+            command: 'new-page',
+            id: 'new-page'
+        }, {
+            attributes: {
+                title: 'Switch Page'
+            },
+            className: 'fa fa-exchange',
+            command: 'switch-page',
+            id: 'switch-page'
+        }, {
+            attributes: {
+                title: 'Download ZIP'
+            },
+            className: 'fa fa-download',
+            command: 'download-zip',
+            id: 'download-zip'
+        }, {
+            attributes: {
+                title: 'Save Current Page'
+            },
+            className: 'fa fa-save',
+            command: 'save-current-page',
+            id: 'save-current-page'
+        }]);
+
+        // Command to create a new page
+        editor.Commands.add('new-page', {
+            run(editor, sender) {
+                sender && sender.set('active', false);
+                const newPageName = prompt('Enter the new page name (e.g., about.html):');
+                if (newPageName) {
+                    saveCurrentPage(); // Save the current page before switching
+                    currentPage = newPageName;
+                    editor.DomComponents.clear(); // Clear canvas for new page
+                    editor.CssComposer.clear(); // Clear CSS for new page
+                    alert('New page created: ' + newPageName);
+                }
+            }
+        });
+
+        // Command to switch between pages
+        editor.Commands.add('switch-page', {
+            run(editor, sender) {
+                sender && sender.set('active', false);
+                const pageName = prompt('Enter the page name to switch (e.g., index.html):');
+                if (pageName && pageList[pageName]) {
+                    saveCurrentPage(); // Save the current page before switching
+                    currentPage = pageName;
+                    editor.DomComponents.getWrapper().set('content', pageList[pageName].html);
+                    editor.CssComposer.getAll().reset(pageList[pageName].css);
+                    alert('Switched to page: ' + pageName);
+                } else {
+                    alert('Page not found! You can create a new page instead.');
+                }
+            }
+        });
+
+        // Command to save the current page
+        editor.Commands.add('save-current-page', {
+            run(editor, sender) {
+                sender && sender.set('active', false);
+                saveCurrentPage();
+            }
+        });
+
+        // Command to download all pages as a ZIP file
+        editor.Commands.add('download-zip', {
+            run(editor, sender) {
+                sender && sender.set('active', false);
+
+                const zip = new JSZip();
+                for (const page in pageList) {
+                    zip.file(page, pageList[page].html); // Add HTML content
+                    zip.file(page.replace('.html', '.css'), pageList[page].css); // Add CSS content
+                }
+
+                // Generate ZIP and download
+                zip.generateAsync({ type: 'blob' }).then(function(content) {
+                    saveAs(content, 'website.zip');
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixabay Image Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 100%; /* Full width */
+            max-width: 1080px; /* Limit width to 1080px */
+            margin: 10px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <input type="text" id="keyword" placeholder="Enter keyword" />
+        <button onclick="searchImages()">Search Images</button>
+    </div>
+
+    <div class="image-container" id="imageContainer"></div>
+
+    <script>
+        const apiKey = '46232949-0980a6dc171b3fd59c5a70cda';  // Replace with your Pixabay API key
+
+        function searchImages() {
+            const keyword = document.getElementById('keyword').value;
+            const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(keyword)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const imageContainer = document.getElementById('imageContainer');
+                    imageContainer.innerHTML = '';  // Clear previous results
+
+                    if (data.hits.length > 0) {
+                        data.hits.forEach(image => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = image.largeImageURL;  // Using largeImageURL for full HD images
+                            imgElement.alt = image.tags;
+                            imageContainer.appendChild(imgElement);
+                        });
+                    } else {
+                        imageContainer.innerHTML = 'No images found';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching images:', error);
+                });
+        }
+    </script>
+
+</body>
+</html>

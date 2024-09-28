@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <!-- Header Section with Navigation -->
+  <header class="bg-primary text-white text-center py-3">
+    <!-- <img src="logo.png" alt="GrapeJs: NLP Web Craft" class="logo mb-2">
+    <h1>GrapeJs: NLP Web Craft</h1> -->
+    <nav >
+      <a href="/admin_dashboard" class="text-white mx-2">Dashboard</a>
+      <a href="/users" class="text-white mx-2">Users</a>
+      <a href="/templates" class="text-white mx-2">Templates</a>
+      <a href="/notifications" class="text-white mx-2">Notifications</a>
+      <a href="/view_prompts" class="text-white mx-2">View Prompts</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Container -->
+  <div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+    
+    <div class="row">
+      <!-- Users Card -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Total Users</h5>
+            <h2 class="card-number">150</h2>
+            <p class="card-text">Number of registered users on the platform.</p>
+            <a href="/users" class="btn btn-primary">View Users</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Templates Card -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Total Templates</h5>
+            <h2 class="card-number">25</h2>
+            <p class="card-text">Templates available for e-commerce, blogs, and portfolios.</p>
+            <a href="/templates" class="btn btn-primary">View Templates</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications Card -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Notifications</h5>
+            <h2 class="card-number">5</h2>
+            <p class="card-text">New notifications from users and system alerts.</p>
+            <a href="/notifications" class="btn btn-primary">View Notifications</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt History Card -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Prompt History</h5>
+            <h2 class="card-number">30</h2>
+            <p class="card-text">Historical prompts generated for website creation.</p>
+            <a href="/prompt_history" class="btn btn-primary">View History</a>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer text-center mt-auto">
+    <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

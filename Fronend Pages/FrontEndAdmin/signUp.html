@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Sign Up</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="adminSignup.css">
+</head>
+<body>
+  <!-- Logo Section -->
+  <header class="text-center my-4">
+    <!-- <img src="logo.png" alt="GrapeJs: NLP Web Craft" class="logo"> -->
+    <h1>GrapeJs: NLP Web Craft</h1>
+  </header>
+
+  <!-- Sign-Up Form -->
+  <div class="signup-container">
+    <h2>Admin Sign Up</h2>
+    <form action="/admin_signup" method="POST">
+      <div class="form-group">
+        <label for="adminName">Admin Name</label>
+        <input type="text" class="form-control" id="adminName" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="adminEmail">Email address</label>
+        <input type="email" class="form-control" id="adminEmail" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+        <label for="adminPassword">Password</label>
+        <input type="password" class="form-control" id="adminPassword" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <label for="adminConfirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="adminConfirmPassword" placeholder="Confirm Password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-signup">Sign Up</button>
+    </form>
+
+    <!-- "Have an account?" section -->
+    <div class="text-center mt-4">
+      <p>Already have an account? <a href="/admin_signin" class="signin-link">Sign In</a></p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
