@@ -1,0 +1,163 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+.float-right {
+    float: right; /* Floats the element to the right */
+}
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #343a40;
+    padding: 1rem 0;
+}
+
+.header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.header .nav a {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.header .nav a:hover {
+    color: #17a2b8;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 5rem 0;
+    background-color: #ffffff;
+}
+
+.contact-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.contact-section .card {
+    border-radius: 10px;
+}
+
+.contact-section .card-body {
+    padding: 2rem;
+}
+
+.contact-section .form-control {
+    border-radius: 30px;
+    padding: 1.2rem;
+    font-size: 1rem;
+}
+
+.contact-section .btn-primary {
+    background-color: #17a2b8;
+    border: none;
+    border-radius: 30px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.contact-section .btn-primary:hover {
+    background-color: #138496;
+}
+
+.contact-section .social-links a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-section .social-links a:hover {
+    color: white;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 3rem 1rem;
+    }
+
+    .contact-section h1 {
+        font-size: 2rem;
+    }
+
+    .contact-section .card-body {
+        padding: 1.5rem;
+    }
+
+    .contact-section .btn-primary {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+}
+/* Social Links Alignment Fix with Two-column Layout */
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px; /* Increase height for larger buttons */
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-links a ion-icon {
+    margin-right: 8px;
+    font-size: 1.2rem; /* Slightly larger icon */
+}
+
+.social-links a:hover {
+    color: white;
+}
+
+/* Adjust button colors on hover */
+.social-links a.btn-outline-primary:hover {
+    background-color: #007bff;
+}
+
+.social-links a.btn-outline-info:hover {
+    background-color: #17a2b8;
+}
+
+.social-links a.btn-outline-danger:hover {
+    background-color: #dc3545;
+}
+
+.social-links a.btn-outline-secondary:hover {
+    background-color: #6c757d;
+}

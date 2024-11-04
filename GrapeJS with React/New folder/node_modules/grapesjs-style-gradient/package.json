@@ -1,0 +1,32 @@
+{
+  "name": "grapesjs-style-gradient",
+  "version": "3.0.3",
+  "description": "Add gradient input to the Style Manager in GrapesJS",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GrapesJS/style-gradient.git"
+  },
+  "scripts": {
+    "start": "grapesjs-cli serve",
+    "build": "grapesjs-cli build"
+  },
+  "keywords": [
+    "grapesjs",
+    "plugin",
+    "style",
+    "gradient"
+  ],
+  "author": "Artur Arseniev",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "grapesjs": "^0.21.7",
+    "grapesjs-cli": "^4.1.3"
+  },
+  "dependencies": {
+    "grapick": "^0.1.13"
+  }
+}

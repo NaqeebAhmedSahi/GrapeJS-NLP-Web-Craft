@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grapes: NLP Web Craft</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Add the following CSS for slide animations */
+        .wrapper-login {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            position: relative;
+            opacity: 1;
+        }
+
+        .slide-out {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .slide-in {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Initially hide the sign-up and forgot password forms */
+        #signUpForm, #forgotPasswordForm {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="#" class="logo"><ion-icon name="logo-web-component"></ion-icon> Grapes: NLP Web Craft</a>
+        <nav class="nav">
+            <a href="#"> Home </a>
+            <a href="features.html"> Features </a>
+            <a href="aboutUs.html"> About </a>
+            <a href="contactus.html"> Contact </a>
+        </nav>
+    </header>
+
+    <section class="home">
+        <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Great!</strong> {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %} -->
+        
+        <div class="content">
+            <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                <strong>Successfully Sign Up!</strong> Now you have to Sign in to Continue.
+                
+              </div>
+            <h2 id="ai-title"></h2>
+            <p id="ai-description"></p>
+            <a href="prompt.html">Get Started</a>
+        </div>
+
+        <div class="wrapper-login" id="signInForm">
+            <h2>Member Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="email" required />
+                    <label>Enter Your Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required />
+                    <label>Enter Your Password</label>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="#" id="registerLink">Register</a></p>
+                    <p><a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="wrapper-login" id="signUpForm">
+            <h2>Member Sign Up</h2>
+            
+            <form action="/" method="POST">
+                <div class="input-box">
+                    <input type="text" name="username" required />
+                    <label>Enter Your Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" required />
+                    <label>Enter Your Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" required />
+                    <label>Enter Your Password</label>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="register-link">
+                    <p>Already have an account? <a href="#" id="signInLink">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="wrapper-login" id="forgotPasswordForm" style="display: none;">
+            <h2>Reset Password</h2>
+            <form action="#">
+                <div class="input-box">
+                    <input type="text" required />
+                    <label>Enter Your Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required />
+                    <label>Enter New Password</label>
+                </div>
+                <button type="submit" class="btn">Reset Password</button>
+                <div class="register-link">
+                    <p>Remembered your password? <a href="#" id="signInLinkForgot">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Grapes: NLP Web Craft. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function typeWriterEffect(element, text, speed) {
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                element.innerHTML = ""; // Clear the content first
+                type();
+            }
+
+            const title = document.getElementById("ai-title");
+            const description = document.getElementById("ai-description");
+
+            const titleText = "Unleash Your Creativity with AI-Powered Web Design";
+            const descriptionText = `Grapes: NLP Web Craft is the future of web design. 
+                Powered by advanced Natural Language Processing (NLP) technology, this AI-driven platform transforms 
+                your ideas into fully functional websites effortlessly.`;
+
+            // Apply the typewriter effect for title and description
+            typeWriterEffect(title, titleText, 100); // Typing effect for title
+            setTimeout(() => {
+                typeWriterEffect(description, descriptionText, 50); // Typing effect for description
+            }, 2000); // Starts typing the description after a 2-second delay
+
+            const signInForm = document.getElementById("signInForm");
+            const signUpForm = document.getElementById("signUpForm");
+            const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+
+            function resetForm(form) {
+                form.classList.remove("slide-out", "slide-in");
+                form.style.display = "none"; // Ensure it is hidden after resetting
+            }
+
+            function toggleForms(hideForm, showForm) {
+                hideForm.classList.add("slide-out"); // Slide out the current form
+
+                setTimeout(() => {
+                    hideForm.style.display = "none"; // Hide the current form
+                    hideForm.classList.remove("slide-out"); // Reset the slide-out class
+                    resetForm(showForm); // Reset the incoming form
+                    showForm.style.display = "block"; // Show the new form
+                    showForm.offsetHeight; // Trigger reflow to restart the animation
+                    showForm.classList.add("slide-in"); // Slide in the new form
+                }, 500); // Match this timeout to the duration of your animation
+            }
+
+            document.getElementById("registerLink").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(signInForm, signUpForm); // Toggle to sign-up form
+            });
+
+            document.getElementById("signInLink").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(signUpForm, signInForm); // Toggle to sign-in form
+            });
+
+            // New event listener for the "Forgot Password" link
+            document.getElementById("forgotPasswordLink").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(signInForm, forgotPasswordForm); // Toggle to forgot password form
+            });
+
+            // New event listener for signing back in from the forgot password form
+            document.getElementById("signInLinkForgot").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                toggleForms(forgotPasswordForm, signInForm); // Toggle back to sign-in form
+            });
+        });
+    </script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

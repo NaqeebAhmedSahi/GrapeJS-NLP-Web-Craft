@@ -1,0 +1,16 @@
+// src/styles.scss
+
+$primary-color: #3498db;
+
+body {
+  background-color: $primary-color;
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
+  h1 {
+    font-size: 2.5rem;
+    color: white;
+  }
+}

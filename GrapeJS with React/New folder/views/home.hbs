@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/custom.css" rel="stylesheet" />
+    <script src="/resources/js/lib/popper.min.js"></script>
+    <script src="/resources/js/lib/bootstrap.min.js"></script>
+    <script src="/resources/js/lib/axios.min.js"></script>
+    <title>{{title}}</title>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for contrast */
+        }
+
+        .card {
+            border-radius: 10px; /* Rounded corners */
+            transition: transform 0.2s; /* Smooth transition */
+        }
+
+        .card:hover {
+            transform: scale(1.02); /* Slight scale on hover */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+        }
+
+        .table thead th {
+            background-color: #007bff; /* Header background color */
+            color: white; /* Header text color */
+        }
+
+        .btn {
+            border-radius: 20px; /* Rounded buttons */
+        }
+
+        h1 {
+            margin-bottom: 30px; /* Space below the main heading */
+            color: #343a40; /* Darker heading color */
+        }
+
+        .download-btn {
+            margin-top: 10px; /* Space above the download button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Page Management</h1>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">Create New Page</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="create-page" onsubmit="return validateForm(event)" novalidate>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Page Name</label>
+                                <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Enter the name of the page"
+                                    required
+                                />
+                                <div class="invalid-feedback">Please provide a valid name.</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" onclick="clearForm()">
+                                    Clear
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-success btn-sm download-btn" id="downloadBtn">
+                            Download All Pages as ZIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">Existing Pages</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each pages}}
+                                <tr>
+                                    <td>{{this._id}}</td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.slug}}</td>
+                                    <td>
+                                        <a href="/editor/{{this._id}}" class="btn btn-warning btn-sm">Edit</a>
+                                        <!-- Example button for deleting a page -->
+                                        <button onclick="deletePage('{{this._id}}')" class="btn btn-danger btn-sm">Delete</button>
+
+
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/resources/js/custom.js"></script>
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            window.location.href = '/pages/download/all'; // Redirect to the download route
+        });
+
+   function deletePage(pageId) {
+            // Confirm deletion
+            if (confirm('Are you sure you want to delete this page?')) {
+                axios.delete(`/pages/${pageId}`)
+                    .then(response => {
+                        // Handle success response
+                        alert(response.data.message); // Show success message
+                        location.reload(); // Reload the page to reflect changes
+                    })
+                    .catch(error => {
+                        // Handle error response
+                        console.error('Error deleting page:', error);
+                        alert('Failed to delete the page. Please try again.'); // Show error message
+                    });
+            }
+        }
+    </script>
+</body>
+</html>

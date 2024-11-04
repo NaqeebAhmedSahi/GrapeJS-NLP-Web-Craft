@@ -1,0 +1,30 @@
+{
+  "name": "grapesjs-custom-code",
+  "version": "1.0.2",
+  "description": "GrapesJS component for the embed of custom code",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "grapesjs-cli build",
+    "start": "grapesjs-cli serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GrapesJS/components-custom-code.git"
+  },
+  "keywords": [
+    "grapesjs",
+    "plugin",
+    "import",
+    "custom",
+    "code"
+  ],
+  "author": "Artur Arseniev",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "grapesjs": "^0.21.2",
+    "grapesjs-cli": "^4.1.0"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "grapesjs-plugin-forms",
+  "version": "2.0.6",
+  "description": "Set of forms components and blocks for GrapesJS editor",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "grapesjs-cli build",
+    "start": "grapesjs-cli serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GrapesJS/components-forms.git"
+  },
+  "keywords": [
+    "grapesjs",
+    "plugin",
+    "form",
+    "builder"
+  ],
+  "author": "Artur Arseniev",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "grapesjs": "^0.21.2",
+    "grapesjs-cli": "^4.1.1"
+  }
+}

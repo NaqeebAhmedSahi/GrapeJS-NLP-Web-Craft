@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Templates</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="templates.css">
+</head>
+<body>
+  <!-- Header Section with Navigation -->
+  <header class="bg-primary text-white text-center py-3">
+    <!-- <img src="logo.png" alt="GrapeJs: NLP Web Craft" class="logo mb-2">
+    <h1>GrapeJs: NLP Web Craft</h1> -->
+    <nav >
+      <a href="/admin_dashboard" class="text-white mx-2">Dashboard</a>
+      <a href="/users" class="text-white mx-2">Users</a>
+      <a href="/templates" class="text-white mx-2">Templates</a>
+      <a href="/notifications" class="text-white mx-2">Notifications</a>
+      <a href="/view_prompts" class="text-white mx-2">View Prompts</a>
+    </nav>
+  </header>
+
+  <!-- Templates Management Container -->
+  <div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4">Manage Templates</h2>
+    
+    <!-- Add Template Form -->
+    <form id="addTemplateForm" class="mb-4">
+      <div class="form-group">
+        <label for="templateZip">Upload Template (ZIP File):</label>
+        <input type="file" class="form-control-file" id="templateZip" accept=".zip" required>
+      </div>
+      <button type="submit" class="btn btn-success">Add Template</button>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th>Template Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="templateTableBody">
+          <!-- Sample Template Data (replace with dynamic data) -->
+          <tr>
+            <td>ecommerce_template.zip</td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deleteTemplate('ecommerce_template.zip')">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>blog_template.zip</td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deleteTemplate('blog_template.zip')">Delete</button>
+            </td>
+          </tr>
+          <!-- Add more template rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer text-center mt-auto">
+    <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Function to handle adding a template
+    document.getElementById('addTemplateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const templateFile = document.getElementById('templateZip').files[0];
+      if (templateFile) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${templateFile.name}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="deleteTemplate('${templateFile.name}')">Delete</button>
+          </td>
+        `;
+        document.getElementById('templateTableBody').appendChild(row);
+        alert(`Template ${templateFile.name} added successfully!`);
+        this.reset(); // Clear the form
+      }
+    });
+
+    // Function to handle deleting a template
+    function deleteTemplate(templateName) {
+      if (confirm(`Are you sure you want to delete the template ${templateName}?`)) {
+        // You would want to implement actual delete logic here
+        alert(`Template ${templateName} has been deleted.`);
+        // To remove the row from the table, you can implement additional logic if needed.
+      }
+    }
+  </script>
+</body>
+</html>

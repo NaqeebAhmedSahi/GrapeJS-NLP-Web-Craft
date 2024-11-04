@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 
 // MongoDB connection URI
 const mongoUri = 'mongodb://localhost:27017/admin';
-
+debugger; 
 // Async function to connect to MongoDB and start the server
 const startServer = async () => {
   try {
@@ -34,7 +34,7 @@ const startServer = async () => {
    
 
     // Start the server
-    const PORT = process.env.APP_PORT || 8085;
+    const PORT = process.env.APP_PORT || 8080;
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
@@ -42,6 +42,7 @@ const startServer = async () => {
     console.error('Error connecting to MongoDB:', error.message);
   }
 };
+
 
 // Start the server
 startServer();

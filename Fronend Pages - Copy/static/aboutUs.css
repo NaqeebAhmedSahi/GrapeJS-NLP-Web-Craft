@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: #f8f9fa; /* Light background */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(30, 11, 4, 0.9);
+    z-index: 99;
+}
+
+.header .logo {
+    font-size: 1.7em;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav a {
+    position: relative;
+    font-size: 1.1em;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.about {
+    padding-top: 120px; /* Space for the fixed header */
+    padding: 50px 20px; /* Padding for the section */
+    text-align: center; /* Center text */
+}
+
+.about h1, .about h2 {
+    color: #1e0b04;
+    margin-bottom: 20px; /* Spacing below headings */
+}
+
+.about p {
+    margin-bottom: 20px; /* Space between paragraphs */
+    color: #333; /* Darker text color for readability */
+    line-height: 1.6; /* Improved line spacing */
+}
+
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1e0b04;
+    color: #ffffff;
+    position: relative;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Responsive CSS */
+
+/* 992px and below */
+@media (max-width: 992px) {
+    .header {
+        padding: 20px 30px;
+    }
+
+    .nav a {
+        font-size: 0.9em;
+    }
+
+    .about {
+        padding: 150px 20px; /* Increased padding for visibility */
+    }
+}
+
+/* 768px and below */
+@media (max-width: 768px) {
+    .header {
+        padding: 20px;
+    }
+
+    .nav a {
+        margin-left: 10px;
+        font-size: 0.85em;
+    }
+
+    .about {
+        padding: 200px 20px; /* Increased padding for mobile view */
+    }
+}
+
+/* 576px and below */
+@media (max-width: 576px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .nav a {
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+
+    .about {
+        padding: 250px 20px; /* Further increased padding for visibility */
+    }
+}

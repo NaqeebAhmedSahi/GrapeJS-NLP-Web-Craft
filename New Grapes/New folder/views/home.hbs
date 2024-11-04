@@ -45,6 +45,9 @@
               <button type='submit' class='btn btn-primary btn-sm'>
                 Save
               </button>
+                <button type="button" class="btn btn-success btn-sm download-btn" id="downloadBtn">
+                            Download All Pages as ZIP
+                        </button>
             </div>
           </form>
         </div>
@@ -67,7 +70,9 @@
                   <td>{{this.name}}</td>
                   <td>{{this.slug}}</td>
                   <td>
-                    <a href='/editor/{{this._id}}'>Edit</a>
+                    <a href='editor/{{this._id}}' class="btn btn-warning btn-sm">Edit</a>
+                    <button onclick="deletePage('{{this._id}}')" class="btn btn-danger btn-sm">Delete</button>
+
                   </td>
                 </tr>
               {{/each}}
@@ -77,5 +82,27 @@
       </div>
     </div>
     <script type='text/javascript' src='/resources/js/custom.js'></script>
+    <script>
+       document.getElementById('downloadBtn').addEventListener('click', function() {
+            window.location.href = '/pages/download/all'; // Redirect to the download route
+        });
+        
+         function deletePage(pageId) {
+            // Confirm deletion
+            if (confirm('Are you sure you want to delete this page?')) {
+                axios.delete(`/pages/${pageId}`)
+                    .then(response => {
+                        // Handle success response
+                        alert(response.data.message); // Show success message
+                        location.reload(); // Reload the page to reflect changes
+                    })
+                    .catch(error => {
+                        // Handle error response
+                        console.error('Error deleting page:', error);
+                        alert('Failed to delete the page. Please try again.'); // Show error message
+                    });
+            }
+        }
+    </script>
   </body>
 </html>

@@ -1,0 +1,163 @@
+/* Bootstrap Import */
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+html {
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 100vh;
+    overflow-y: auto; /* Allow vertical scrolling */
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: 0.5s;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.sidenav .logo {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px; /* Add padding for better appearance */
+}
+
+.sidenav .pages {
+    height: 100px;
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.main-content {
+    position: relative;
+    width: 85%;
+    left: 15%; /* Adjusts main content to the right of the sidenav */
+}
+
+.main-content .navbar {
+    padding: 0;
+}
+
+.main-content .navbar .container-fluid {
+    padding: 0;
+}
+
+.main-content #editor {
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    height: 100%; /* Ensure editor takes full height */
+}
+
+.nav {
+    justify-content: space-between;
+}
+
+.gjs-pn-panel {
+    position: relative;
+}
+
+.gjs-cv-canvas {
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.tab-content {
+    display: contents; /* Keep this for Bootstrap tab functionality */
+}
+
+#block {
+    height: 100%;
+}
+
+#block #blocks {
+    height: 100%;
+}
+
+#block #blocks .gjs-blocks-c {
+    display: flex; /* Ensure flex for alignment */
+    align-items: center;
+    justify-content: center;
+}
+
+#block #blocks .gjs-block {
+    display: flex; /* Ensure flex for alignment */
+    justify-content: center;
+}
+
+#block #blocks .gjs-block-label {
+    display: none; /* Hide block labels */
+}
+
+/* Theming */
+.gjs-one-bg {
+    background-color: #fcf6f5;
+}
+
+.gjs-two-color {
+    color: #990011;
+}
+
+.gjs-three-bg {
+    background-color: #990011;
+    color: #fcf6f5;
+}
+
+.gjs-four-color,
+.gjs-four-color-h:hover {
+    color: #990011;
+}
+
+.gjs-pn-btn {
+    border: 1px solid #990011;
+}
+
+/* Customize Bootstrap CSS */
+.btn,
+.nav-link,
+.modal-content,
+.form-control {
+    border-radius: 0 !important; /* Override Bootstrap's border radius */
+}
+
+.btn .fa {
+    color: #990011; /* FontAwesome icon color */
+}
+
+.btn:hover .fa {
+    color: #fcf6f5; /* Change icon color on hover */
+}
+
+/* Error */
+.error .bg-body {
+    min-height: 150px;
+    max-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error .bg-body .title {
+    font-weight: 600;
+}
+
+.error .btn {
+    border-radius: 40px !important;
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    min-width: 150px;
+}
