@@ -1,35 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/Admin/notifications.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'; // Ensure axios is installed
 
 const Notifications = () => {
-  // Sample notifications data, you can replace this with dynamic data from an API
-  const [notifications, setNotifications] = useState([
-    { id: 1, name: 'John Doe', email: 'john@example.com', message: 'Interested in your services!' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', message: 'Could you provide more details?' },
-  ]);
+  const [notifications, setNotifications] = useState([]);
+  const [error, setError] = useState(null); // State for handling errors
+
+  // Fetch notifications from API on component mount
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/admin/notifications'); // Adjust the endpoint as needed
+        setNotifications(response.data);
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+        setError('Failed to fetch notifications.'); // Set error message
+      }
+    };
+
+    fetchNotifications();
+  }, []);
 
   // Handle deleting a notification
-  const deleteNotification = (id) => {
+  const deleteNotification = async (id) => {
     if (window.confirm(`Are you sure you want to delete this notification?`)) {
-      setNotifications(notifications.filter((notification) => notification.id !== id));
-      alert('Notification has been deleted.');
+      try {
+        await axios.delete(`http://localhost:5000/api/admin/notifications/${id}`); // Call the delete endpoint
+        setNotifications(notifications.filter((notification) => notification._id !== id)); // Update state to remove the deleted notification
+        alert('Notification has been deleted.');
+      } catch (error) {
+        console.error('Error deleting notification:', error);
+        alert('Failed to delete notification.'); // Alert for delete failure
+      }
     }
   };
 
   // Handle responding to a notification
-  const respondToNotification = (name) => {
+  const respondToNotification = async (name) => {
     const message = window.prompt(`Enter your response to ${name}:`);
     if (message) {
-      // Add response logic here, like sending the message to the server
+      // Here you can send the response to the server
       alert(`Response sent to ${name}: "${message}"`);
+      // You can implement sending the message to the server if needed
     }
   };
 
   return (
     <div>
-      {/* Header Section with Navigation */}
       <header className="bg-primary text-white text-center py-3">
         <nav>
           <Link to="/admin_dashboard" className="text-white mx-2">Dashboard</Link>
@@ -40,9 +59,9 @@ const Notifications = () => {
         </nav>
       </header>
 
-      {/* Notifications Table Container */}
       <div className="container mt-4 mb-5">
         <h2 className="text-center mb-4">Notifications</h2>
+        {error && <div className="alert alert-danger">{error}</div>} {/* Display error if exists */}
         <div className="table-responsive">
           <table className="table table-striped table-bordered text-center">
             <thead className="thead-dark">
@@ -54,33 +73,38 @@ const Notifications = () => {
               </tr>
             </thead>
             <tbody>
-              {notifications.map((notification) => (
-                <tr key={notification.id}>
-                  <td>{notification.name}</td>
-                  <td>{notification.email}</td>
-                  <td>{notification.message}</td>
-                  <td>
-                    <button
-                      className="btn btn-primary btn-sm"
-                      onClick={() => respondToNotification(notification.name)}
-                    >
-                      Respond
-                    </button>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => deleteNotification(notification.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+              {notifications.length === 0 ? (
+                <tr>
+                  <td colSpan="4">No notifications found.</td>
                 </tr>
-              ))}
+              ) : (
+                notifications.map((notification) => (
+                  <tr key={notification._id}>
+                    <td>{notification.name}</td>
+                    <td>{notification.email}</td>
+                    <td>{notification.message}</td>
+                    <td>
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => respondToNotification(notification.name)}
+                      >
+                        Respond
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deleteNotification(notification._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
 
-      {/* Footer Section */}
       <footer className="footer text-center mt-auto">
         <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
       </footer>

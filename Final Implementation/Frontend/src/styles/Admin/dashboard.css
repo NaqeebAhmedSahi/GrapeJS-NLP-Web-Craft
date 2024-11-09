@@ -1,0 +1,102 @@
+/* General styling for the dashboard */
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Logo Section */
+  .logo {
+    width: 100px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Header navigation links */
+  nav a {
+    font-size: 16px;
+    text-decoration: none;
+  }
+  
+  /* Dashboard Card styling */
+  .dashboard-card {
+    border-radius: 15px;
+    background-color: #007bff;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card title */
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Card number */
+  .card-number {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  /* Card text */
+  .card-text {
+    font-size: 14px;
+    color: #f0f0f0;
+  }
+  
+  /* Button styling */
+  .btn-primary {
+    background-color: #0056b3;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #003d7a;
+  }
+  
+  /* Footer Section */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: #fff;
+    margin-top: auto; /* Ensures footer is at the bottom */
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 576px) {
+    header h1 {
+      font-size: 20px;
+    }
+  
+    .card-number {
+      font-size: 28px;
+    }
+  
+    .btn-primary {
+      font-size: 14px;
+    }
+  
+    .logo {
+      width: 80px;
+    }
+  }
+  

@@ -30,7 +30,7 @@ const AdminSignUp = () => {
     }
 
     try {
-      const response = await axios.post('/api/admin/signup', {
+      const response = await axios.post('http://localhost:5000/api/admin/signup', {
         adminName,
         adminEmail,
         adminPassword
@@ -125,4 +125,7 @@ const AdminSignUp = () => {
         <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
       </footer>
     </div>
- 
+  );
+};
+
+export default AdminSignUp;

@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/Admin/admin-signin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const AdminSignIn = () => {
+  const [formData, setFormData] = useState({
+    adminEmail: '',
+    adminPassword: '',
+  });
+  const navigate = useNavigate(); // Hook to programmatically navigate
+
   // Form submission handler
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    // Handle the sign-in logic here (e.g., make an API request)
-    console.log("Admin sign-in form submitted.");
+    try {
+      const response = await axios.post('http://localhost:5000/api/admin/signin', formData);
+      // Handle successful sign-in
+      console.log("Sign-in successful:", response.data);
+      // Redirect to admin dashboard or desired page
+      navigate('/admin_dashboard');
+    } catch (error) {
+      // Handle error (e.g., invalid credentials)
+      console.error("Sign-in error:", error.response?.data?.message || error.message);
+      alert("Failed to sign in. Please check your credentials.");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value
+    }));
   };
 
   return (
@@ -30,6 +55,8 @@ const AdminSignIn = () => {
               className="form-control"
               id="adminEmail"
               placeholder="Enter email"
+              value={formData.adminEmail}
+              onChange={handleChange}
               required
             />
           </div>
@@ -40,6 +67,8 @@ const AdminSignIn = () => {
               className="form-control"
               id="adminPassword"
               placeholder="Password"
+              value={formData.adminPassword}
+              onChange={handleChange}
               required
             />
           </div>
