@@ -46,6 +46,7 @@ function App() {
         {localStorage.getItem('adminId') && (
           <Route path="/super_admin" element={<AdminProtectedRoute element={<SuperAdminPage isSuperAdmin={true} />} />} />
         )}
+        
       </Routes>
     </Router>
   );

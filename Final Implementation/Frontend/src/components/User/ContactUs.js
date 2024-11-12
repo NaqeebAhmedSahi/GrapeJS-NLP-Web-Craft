@@ -64,7 +64,7 @@ const ContactUs = () => {
             
             <section className="contact-section py-5">
                 <div className="container">
-                    <h1 className="text-center mb-5">Get in Touch</h1>
+                    <h1 className="text-center m-5">Get in Touch</h1>
 
                     <div className="row">
                         {/* Contact Form */}

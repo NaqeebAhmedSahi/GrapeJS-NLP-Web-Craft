@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import axios for making HTTP requests
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import '../../styles/Admin/adminSignup.css'
+
 const AdminSignUp = () => {
   const [formData, setFormData] = useState({
     adminName: '',
@@ -10,6 +12,7 @@ const AdminSignUp = () => {
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -23,7 +26,6 @@ const AdminSignUp = () => {
     e.preventDefault();
     const { adminName, adminEmail, adminPassword, adminConfirmPassword } = formData;
 
-    // Basic validation for password match
     if (adminPassword !== adminConfirmPassword) {
       setError('Passwords do not match.');
       return;
@@ -37,6 +39,12 @@ const AdminSignUp = () => {
       });
       setSuccess(response.data.message);
       setError(null);
+      setFormData({ adminName: '', adminEmail: '', adminPassword: '', adminConfirmPassword: '' });
+      
+      // Redirect to sign-in page after 2 seconds
+      setTimeout(() => {
+        navigate('/adminSignIn');
+      }, 2000);
     } catch (error) {
       setError(error.response?.data?.message || 'Registration failed');
       setSuccess(null);
@@ -45,12 +53,10 @@ const AdminSignUp = () => {
 
   return (
     <div>
-      {/* Logo Section */}
       <header className="text-center my-4">
         <h1>GrapeJs: NLP Web Craft</h1>
       </header>
 
-      {/* Sign-Up Form */}
       <div className="signup-container">
         <h2>Admin Sign Up</h2>
         {error && <p className="error-message">{error}</p>}
@@ -109,18 +115,16 @@ const AdminSignUp = () => {
           </button>
         </form>
 
-        {/* "Have an account?" section */}
         <div className="text-center mt-4">
           <p>
             Already have an account?{' '}
-            <Link to="/admin_signin" className="signin-link">
+            <Link to="/adminSignIn" className="signin-link">
               Sign In
             </Link>
           </p>
         </div>
       </div>
 
-      {/* Footer Section */}
       <footer className="footer">
         <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
       </footer>

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Correct import
 
 const SignInForm = ({ toggleForm, setShowNotification, setNotificationMessage, handleSignInSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-    setError(''); // Reset error message
+    setLoading(true);
+    setError('');
     console.log('API URL:', process.env.REACT_APP_API_URL); 
 
     try {
@@ -27,22 +30,24 @@ const SignInForm = ({ toggleForm, setShowNotification, setNotificationMessage, h
 
             // Notify the user of successful sign in
             setNotificationMessage(response.data.message);
+            console.log(response.data.message);
             setShowNotification(true);
             handleSignInSuccess(); // Notify parent component of successful sign-in
+
+            // Navigate to the "/prompt" page
+            navigate("/prompt");
         } else {
             throw new Error('Invalid response from server'); // Handle unexpected response structure
         }
     } catch (error) {
-        // Handle any errors during the sign-in process
-        const message = error.response ? error.response.data.message : 'Server error. Please try again later.';
-        setError(message); // Set error message
-        setNotificationMessage(message);
-        setShowNotification(true);
+        // const message = error.response ? error.response.data.message : 'Server error. Please try again later.';
+        // setError(message);
+        // setNotificationMessage(message);
+        // setShowNotification(true);
     } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
     }
-};
-
+  };
 
   return (
     <div className="wrapper-login slide-in">
@@ -54,7 +59,7 @@ const SignInForm = ({ toggleForm, setShowNotification, setNotificationMessage, h
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            aria-describedby="emailHelp" // Accessibility improvement
+            aria-describedby="emailHelp"
           />
           <label>Enter Your Email</label>
         </div>
@@ -64,14 +69,14 @@ const SignInForm = ({ toggleForm, setShowNotification, setNotificationMessage, h
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            aria-describedby="passwordHelp" // Accessibility improvement
+            aria-describedby="passwordHelp"
           />
           <label>Enter Your Password</label>
         </div>
         <button type="submit" className="btn" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
-        {error && <p className="error-message">{error}</p>} {/* Display error message */}
+        {error && <p className="error-message">{error}</p>}
         <div className="register-link">
           <p>
             Don't have an account?{" "}

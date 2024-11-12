@@ -94,7 +94,7 @@ html {
 
 /* Theming */
 .gjs-one-bg {
-  background-color: #fcf6f5ff;
+  background-color: rgb(255, 255, 255);
 }
 
 .gjs-two-color {
@@ -121,7 +121,7 @@ html {
 .nav-link,
 .modal-content,
 .form-control {
-  border-radius: 0 !important;
+  border-radius: 0 ;
 }
 
 .btn {

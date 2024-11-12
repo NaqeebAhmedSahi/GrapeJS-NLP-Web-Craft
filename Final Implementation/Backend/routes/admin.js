@@ -1,9 +1,11 @@
 import express from 'express';
 import Admin from '../models/Admin.js'; // Import the Admin model
 import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
-import session from 'express-session';
-import { JWT_SECRET } from '../config.js';
+
 import User from '../models/User.js';
+import Contact from '../models/Contact.js';
+
+
 
 const router = express.Router();
 
@@ -139,6 +141,69 @@ router.delete('/users/:id', async (req, res) => {
         res.status(500).json({ message: 'Failed to delete user.' });
     }
 });
+
+// Route to get all contact messages
+router.get('/contacts', async (req, res) => {
+  try {
+    // Fetch all contact messages from the database
+    const contacts = await Contact.find(); // No population needed unless you want user info
+
+    // Send the contact messages as a response
+    res.json(contacts);
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+    res.status(500).json({ message: 'Failed to fetch contacts' });
+  }
+});
+
+// POST request to respond to a contact notification
+// DELETE request to delete a contact message by ID
+router.delete('/contacts/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const contact = await Contact.findByIdAndDelete(id);
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact not found.' });
+    }
+    res.status(200).json({ message: 'Notification has been deleted.' });
+  } catch (error) {
+    console.error('Error deleting contact:', error);
+    res.status(500).json({ message: 'Failed to delete notification.' });
+  }
+});
+
+// POST request to handle response to a contact message
+router.post('/respond/:id', async (req, res) => {
+  const { id } = req.params;  // Get the contact message ID from URL parameter
+  const { response } = req.body;  // Get the response from the request body
+
+  console.log(`Received request to respond to contact message with ID: ${id}`);  // Log the incoming request
+
+  try {
+    // Find the contact by ID and update the response field
+    console.log(`Attempting to update response for contact ID: ${id} with message: "${response}"`); // Log the action before database update
+
+    const updatedContact = await Contact.findByIdAndUpdate(
+      id,
+      { $set: { response } },  // Set the response field to the new value
+      { new: true }  // Ensure the updated document is returned
+    );
+
+    if (!updatedContact) {
+      console.log(`Contact with ID: ${id} not found.`);  // Log if the contact was not found
+      return res.status(404).json({ message: 'Contact message not found.' });
+    }
+
+    console.log(`Successfully updated contact with ID: ${id}. New response: "${updatedContact.response}"`);  // Log success message
+    res.status(200).json({ message: 'Response sent successfully', updatedContact });
+
+  } catch (error) {
+    console.error(`Error responding to contact message with ID: ${id}`, error);  // Log error details
+    res.status(500).json({ message: 'Failed to respond to contact message.' });
+  }
+});
+
+
 
   
 export default router;

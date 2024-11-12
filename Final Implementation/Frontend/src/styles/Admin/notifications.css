@@ -1,11 +1,15 @@
 /* General styling for the notifications page */
 body {
-    background-color: #f8f9fa;
+  background-color: #eaecee;
+    
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  
+  .notification{
+  background-color: #eaecee;
+
+  }
   /* Logo Section */
   .logo {
     width: 100px;
@@ -36,12 +40,14 @@ body {
   
   /* Footer Section */
   .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color:#343a40;
+    padding: 20px 0;
     text-align: center;
-    padding: 20px;
-    background-color: #343a40;
-    color: #fff;
-    margin-top: auto; /* Ensures footer is at the bottom */
   }
+  
   
   .footer p {
     margin: 0;

@@ -6,8 +6,6 @@ body {
     background-color: #f4f4f4;
 }
 
-
-
 .radio-label {
     display: flex;
     flex-direction: column;
@@ -31,7 +29,7 @@ body {
 
 /* Prompt Section */
 .home {
-    padding: 40px;
+    
     text-align: center;
 }
 
@@ -93,9 +91,9 @@ h2 {
         font-size: 16px;
         
     }
-    .portable{
+    /* .portable{
         padding-top: 250px;
-    }
+    } */
 }
 
 @media (max-width: 274px) {
@@ -103,9 +101,9 @@ h2 {
         padding: 10px 20px;
         font-size: 14px;
     }
-    .portable{
+    /* .portable{
         padding-top: 300px;
-    }
+    } */
    
 }
 .input-group .form-control {

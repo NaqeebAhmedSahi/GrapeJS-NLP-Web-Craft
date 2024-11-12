@@ -6,22 +6,24 @@ import AdminHeader from './AdminHeader';
 
 const AdminDashboard = () => {
   return (
-    <div>
+    <div className="admin-dashboard">
       {/* Header Section with Navigation */}
-      <AdminHeader/>
+      <AdminHeader />
+      
       {/* Dashboard Container */}
-      <div className="container mt-4 mb-5">
-        <h2 className="text-center mb-4">Admin Dashboard</h2>
+      <div className="dashboard-container container mt-4 mb-5">
+        <h2 className="dashboard-header text-center mb-4">Admin Dashboard</h2>
 
+        {/* Dashboard Cards Row */}
         <div className="row">
           {/* Users Card */}
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="card dashboard-card">
-              <div className="card-body text-center">
+              <div className="card-body">
                 <h5 className="card-title">Total Users</h5>
                 <h2 className="card-number">150</h2>
                 <p className="card-text">Number of registered users on the platform.</p>
-                <Link to="/users" className="btn btn-primary">View Users</Link>
+                <Link to="/users" className="btn card-btn">View Users</Link>
               </div>
             </div>
           </div>
@@ -29,11 +31,11 @@ const AdminDashboard = () => {
           {/* Templates Card */}
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="card dashboard-card">
-              <div className="card-body text-center">
+              <div className="card-body">
                 <h5 className="card-title">Total Templates</h5>
                 <h2 className="card-number">25</h2>
                 <p className="card-text">Templates available for e-commerce, blogs, and portfolios.</p>
-                <Link to="/templates" className="btn btn-primary">View Templates</Link>
+                <Link to="/templates" className="btn card-btn">View Templates</Link>
               </div>
             </div>
           </div>
@@ -41,11 +43,11 @@ const AdminDashboard = () => {
           {/* Notifications Card */}
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="card dashboard-card">
-              <div className="card-body text-center">
+              <div className="card-body">
                 <h5 className="card-title">Notifications</h5>
                 <h2 className="card-number">5</h2>
                 <p className="card-text">New notifications from users and system alerts.</p>
-                <Link to="/notifications" className="btn btn-primary">View Notifications</Link>
+                <Link to="/notifications" className="btn card-btn">View Notifications</Link>
               </div>
             </div>
           </div>
@@ -53,11 +55,11 @@ const AdminDashboard = () => {
           {/* Prompt History Card */}
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="card dashboard-card">
-              <div className="card-body text-center">
+              <div className="card-body">
                 <h5 className="card-title">Prompt History</h5>
                 <h2 className="card-number">30</h2>
                 <p className="card-text">Historical prompts generated for website creation.</p>
-                <Link to="/prompt_history" className="btn btn-primary">View History</Link>
+                <Link to="/prompt_history" className="btn card-btn">View History</Link>
               </div>
             </div>
           </div>
@@ -65,7 +67,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Footer Section */}
-      <footer className="footer text-center mt-auto">
+      <footer className="footer text-center mt-auto py-4">
         <p>&copy; 2024 GrapeJs: NLP Web Craft | All Rights Reserved</p>
       </footer>
     </div>

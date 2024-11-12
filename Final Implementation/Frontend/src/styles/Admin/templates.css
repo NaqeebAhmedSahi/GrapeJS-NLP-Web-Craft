@@ -1,10 +1,14 @@
 /* General styling for the templates page */
 body {
-    background-color: #f8f9fa;
+  background-color: #eaecee;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
+.manage{
+  background-color: #eaecee;
+
+}
   
   /* Logo Section */
   .logo {

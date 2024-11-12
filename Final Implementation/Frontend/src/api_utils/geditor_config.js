@@ -22,6 +22,7 @@ import tailwindComponent from "../plugins/tailwind";
 import swiperComponent from "../plugins/swiper";
 import chartLibComponent from "../plugins/charts";
 
+
 const geditorConfig = (assets, pageId) => {
   $(".panel__devices").html("");
   $(".panel__basic-actions").html("");

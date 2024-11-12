@@ -10,9 +10,9 @@ const Prompt = () => {
     <div>
        <Header/>
       <div className="home">
-        <div className="portable"></div>
+        
         <div className="container">
-          <h2 className="text-center mb-4 text-white">Select Your Project Type</h2>
+          <h2 className="text-center text-white">Select Your Project Type</h2>
           <p className="text-center text-white mb-4">
             Choose the type of AI-powered web builder you'd like to create. Whether it's for an E-commerce site, a personal blog, or a portfolio, we've got you covered!
           </p>
@@ -52,7 +52,7 @@ const Prompt = () => {
               <div className="input-group">
                 <input type="text" id="website-input" className="form-control" placeholder="e.g., 'I want to build an e-commerce site for handmade crafts that includes product categories, user reviews, and a shopping cart.'" aria-label="Project Details" aria-describedby="submit-btn" />
                 <div className="input-group-append">
-                  <button onClick={() => navigate('/home')} className="btn btn-primary" type="button" id="submit-btn">
+                  <button onClick={() => navigate('/home')} className="btn btn-primary mt-1" type="button" id="submit-btn">
                     <ion-icon name="send-outline"></ion-icon>
                   </button>
                 </div>

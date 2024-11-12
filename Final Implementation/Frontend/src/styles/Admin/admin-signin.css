@@ -25,11 +25,12 @@
   }
   
   /* Input fields */
-  .form-control {
-    border-radius: 30px;
-    padding: 15px;
+  .form-control1 {
+    border-radius: 30px !important;
+    padding: 5px;
     border: 1px solid #ced4da;
     background-color: #f8f9fa;
+    margin: 5px;
   }
   
   /* Button styling */

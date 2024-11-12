@@ -14,7 +14,7 @@ const Features = () => {
 
             <section className="features py-5">
                 <div className="container text-center">
-                    <h1 className="mb-5">Our Features</h1>
+                    <h1 className="m-5">Our Features</h1>
                     <div className="row">
                         {/* Feature 1: E-commerce Website Builder */}
                         <div className="col-md-4 mb-4">

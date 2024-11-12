@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/User/loginPage.css"; // Add your custom styles here
 
-import {useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import {  useLocation, Link } from "react-router-dom"; // Import useLocation
 import SignInForm from './SignInForm'; // Import SignInForm
 import SignUpForm from './SignUpForm'; // Import SignUpForm
 import ForgotPasswordForm from './ForgotPasswordForm'; // Import ForgotPasswordForm
@@ -15,9 +15,9 @@ const LoginPage = () => {
   const [descriptionText, setDescriptionText] = useState("");
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
+  // Manage login state
 
-  const navigate = useNavigate(); // Hook for programmatic navigation
+   // Hook for programmatic navigation
   const location = useLocation(); // Hook for accessing the current location
 
   const typeWriterEffect = (text, speed, callback) => {
@@ -61,9 +61,7 @@ const LoginPage = () => {
     setActiveForm(formName);
   };
 
-  const handleSignInSuccess = () => {
-    setIsLoggedIn(true); // Set login state to true on successful sign-in
-  };
+  
 
   const handleSignUpSuccess = (message) => {
     setNotificationMessage(message);
@@ -71,13 +69,6 @@ const LoginPage = () => {
     setTimeout(() => setShowNotification(false), 5000); // Hide notification after 5 seconds
   };
 
-  const handleGetStartedClick = () => {
-    if (isLoggedIn) {
-      navigate("/prompt"); // Navigate to the prompt page if logged in
-    } else {
-      alert("Please Sign In/Sign Up first!"); // Show alert if not logged in
-    }
-  };
 
   return (
     <div>
@@ -85,20 +76,18 @@ const LoginPage = () => {
       <main className="home">
         <div className="content">
           {showNotification && (
-            <div className="alert alert-success alert-dismissible fade show" role="alert">
-              {notificationMessage}
-              <button type="button" className="close" onClick={() => setShowNotification(false)}>
-                <span>&times;</span>
-              </button>
-            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{notificationMessage} </strong> Click on Get Started Button to continue
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
           )}
           <h2>{titleText}</h2>
           <p>{descriptionText}</p>
-          <button className="btn-done" onClick={handleGetStartedClick}>
+          <Link to="/prompt" className="btn-done">
             Get Started
-          </button>
+          </Link>
         </div>
-        {activeForm === "signIn" && <SignInForm toggleForm={toggleForm} setShowNotification={setShowNotification} setNotificationMessage={setNotificationMessage} handleSignInSuccess={handleSignInSuccess} />}
+        {activeForm === "signIn" && <SignInForm toggleForm={toggleForm} setShowNotification={setShowNotification} setNotificationMessage={setNotificationMessage} />}
         {activeForm === "signUp" && <SignUpForm toggleForm={toggleForm} handleSignUpSuccess={handleSignUpSuccess} />}
         {activeForm === "forgotPassword" && <ForgotPasswordForm toggleForm={toggleForm} />}
         {activeForm === "resetPassword" && <ResetPasswordForm toggleForm={toggleForm} />} {/* Add this line */}

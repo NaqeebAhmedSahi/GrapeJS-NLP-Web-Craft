@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminHeader from './AdminHeader';
+import '../../styles/Admin/view_prompts.css'
 
 const ViewPrompts = () => {
   // Sample prompts data stored in state (replace with API data)
@@ -19,18 +22,10 @@ const ViewPrompts = () => {
   };
 
   return (
-    <div>
+    <div className='view'>
       {/* Header Section with Navigation */}
-      <header className="bg-primary text-white text-center py-3">
-        <nav>
-          <Link to="/admin_dashboard" className="text-white mx-2">Dashboard</Link>
-          <Link to="/users" className="text-white mx-2">Users</Link>
-          <Link to="/templates" className="text-white mx-2">Templates</Link>
-          <Link to="/notifications" className="text-white mx-2">Notifications</Link>
-          <Link to="/view_prompts" className="text-white mx-2">View Prompts</Link>
-        </nav>
-      </header>
-
+      
+      <AdminHeader/>
       {/* Prompts Table Container */}
       <div className="container mt-4 mb-5">
         <h2 className="text-center mb-4">View All Prompts</h2>
