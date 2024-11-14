@@ -1,0 +1,71 @@
+/* General styling for the notifications page */
+body {
+  background-color: #eaecee;
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .notification{
+  background-color: #eaecee;
+
+  }
+  /* Logo Section */
+  .logo {
+    width: 100px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Notifications Table styling */
+  .table {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden; /* Ensures rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .table td {
+    font-weight: 500;
+  }
+  
+  /* Footer Section */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color:#343a40;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 576px) {
+    header h1 {
+      font-size: 20px;
+    }
+  
+    .logo {
+      width: 80px;
+    }
+  
+    .table th, .table td {
+      font-size: 14px;
+    }
+  }
+  

@@ -1,0 +1,112 @@
+/* General container for sign-in form */
+.signin-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dee2e6;
+    text-align: center;
+  }
+  
+  /* Heading */
+  .signin-container h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  /* Label styles */
+  .form-group label {
+    font-weight: bold;
+    color: #495057;
+  }
+  
+  /* Input fields */
+  .form-control1 {
+    border-radius: 30px !important;
+    padding: 5px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+    margin: 5px;
+  }
+  
+  /* Button styling */
+  .btn-signin {
+    background-color: #007bff;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn-signin:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* 'Don't have an account?' section */
+  .signup-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Logo Section */
+  .logo {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  /* Footer Section */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 576px) {
+    .signin-container {
+      padding: 20px;
+    }
+  
+    .btn-signin {
+      font-size: 14px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    header h1 {
+      font-size: 20px;
+    }
+  
+    .logo {
+      width: 80px;
+    }
+  }
+  

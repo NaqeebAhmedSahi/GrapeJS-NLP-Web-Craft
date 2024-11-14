@@ -1,0 +1,133 @@
+/* General styling for the dashboard */
+.admin-dashboard {
+    background-color: #eaecee;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Dashboard specific styling */
+.admin-dashboard .dashboard-container {
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+}
+
+.admin-dashboard .dashboard-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Dashboard Card Styling */
+.dashboard-card {
+  border-radius: 15px; 
+  background-color: #007bff;
+  color: #fff;
+  min-height: 250px; /* Fixed height for all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-dashboard .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-dashboard .dashboard-card .card-body {
+    text-align: center;
+}
+
+.admin-dashboard .dashboard-card .card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.admin-dashboard .dashboard-card .card-number {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.admin-dashboard .dashboard-card .card-text {
+    font-size: 14px;
+    color: #272424;
+}
+
+.admin-dashboard .card-btn {
+    background-color: #0056b3;
+    border: none;
+    border-radius: 30px !important; 
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    color: #f8f9fa;
+    overflow: hidden;
+}
+
+.admin-dashboard .card-btn:hover {
+    background-color: #003d7a;
+    color: #f8f9fa;
+
+}
+
+/* Footer Section */
+.admin-dashboard .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: #fff;
+    margin-top: auto; /* Ensures footer is at the bottom */
+}
+
+.admin-dashboard .footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive styling */
+@media (max-width: 576px) {
+    .admin-dashboard .dashboard-header h2 {
+        font-size: 20px;
+    }
+
+    .admin-dashboard .dashboard-card .card-number {
+        font-size: 28px;
+    }
+
+    .admin-dashboard .card-btn {
+        font-size: 14px;
+    }
+}
+/* Styling for the square box */
+.square-box {
+  width: 200px;  /* Width of the square box */
+  height: 200px; /* Height of the square box */
+  background-color: #007bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  border-radius: 15px;  /* Optional: adds rounded corners to the square box */
+  text-align: center;
+}
+
+/* Styling for the round button */
+.round-button {
+  width: 60px;  /* Width of the button */
+  height: 60px; /* Height of the button */
+  background-color: #0056b3;
+  border: none;
+  color: white;
+  border-radius: 50%;  /* Makes the button round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.round-button:hover {
+  background-color: #003d7a;
+}

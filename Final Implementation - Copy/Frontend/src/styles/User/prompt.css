@@ -1,0 +1,134 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.radio-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    height: 100%; /* Full height for equal sizing */
+    padding: 20px; /* Add some padding */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Optional: white border */
+    border-radius: 10px; /* Optional: rounded corners */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slightly transparent background */
+}
+.radio-box {
+    display: none; /* Hide radio button */
+}
+
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Prompt Section */
+.home {
+    
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.radio-box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Radio Button Style */
+.radio-box {
+    display: none;
+}
+
+.radio-label {
+   
+    padding: 20px 40px;
+    
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+}
+
+/* Unchecked state */
+.radio-label:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* When the radio button is selected */
+.radio-box:checked + .radio-label {
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    color: black;
+}
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .radio-label {
+        padding: 15px 30px;
+        font-size: 16px;
+        
+    }
+    .portable{
+        padding-top: 50px;
+    }
+}
+/* Responsive Design */
+@media (max-width: 576px) {
+    .radio-label {
+        padding: 15px 30px;
+        font-size: 16px;
+        
+    }
+    /* .portable{
+        padding-top: 250px;
+    } */
+}
+
+@media (max-width: 274px) {
+    .radio-label {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    /* .portable{
+        padding-top: 300px;
+    } */
+   
+}
+.input-group .form-control {
+    height: 50px; /* Increase height */
+    border-radius: 30px; /* Rounded corners for the input field */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Transparent white border */
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+    color: #fff; /* White text */
+    padding-left: 20px;
+}
+
+.input-group .btn {
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.2); /* Transparent white background */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Transparent border */
+    color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group .btn:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+    border-color: #fff; /* Solid white border on hover */
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+    border-color: #fff;
+}

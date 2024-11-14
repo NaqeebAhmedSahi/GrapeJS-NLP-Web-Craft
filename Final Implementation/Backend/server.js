@@ -12,6 +12,9 @@ import session from 'express-session'; // Import express-session
 import authRoutes from './routes/auth.js';  // Import auth routes
 import contactRoutes from './routes/contact.js';
 import adminRoutes from './routes/admin.js';
+import templateRoutes from './routes/template.js';
+import pageRoutes from './routes/page.js';
+
 import { JWT_SECRET } from './config.js'; // Import your JWT_SECRET
 
 // Initialize App
@@ -68,6 +71,9 @@ app.get('/:pageId?', renderHtml);
 app.use('/api/auth', authRoutes);  // Use auth routes
 app.use('/api/contact', contactRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/templates', templateRoutes);
+app.use('/api/page', pageRoutes); 
+
 
 // Start Server
 const PORT = process.env.APP_PORT || 8080;

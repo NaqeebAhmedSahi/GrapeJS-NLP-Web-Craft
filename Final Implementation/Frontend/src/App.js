@@ -19,6 +19,8 @@ import Home from "./Home";
 import Editor from "./Editor";
 import ProtectedRoute from './components/ProtectedRoute'; // Import your ProtectedRoute component
 import AdminProtectedRoute from './components/AdminProtectedRoute';
+import ManagePages from './components/Admin/ManagePages';
+import UpdatePage from './components/Admin/UpdatePage';
 
 function App() {
   return (
@@ -41,6 +43,9 @@ function App() {
         <Route path="/templates" element={<AdminProtectedRoute element={<ManageTemplates />} />} />
         <Route path="/users" element={<AdminProtectedRoute element={<Users />} />} />
         <Route path="/view_prompts" element={<AdminProtectedRoute element={<ViewPrompts />} />} />
+        <Route path="/manage-pages/:websiteId" element={<ManagePages />} />
+        <Route path="/updatePage/:websiteId/:pageName" element={<UpdatePage />} /> {/* Define the route for UpdatePage */}
+    
         
         {/* Only accessible if user is a superadmin */}
         {localStorage.getItem('adminId') && (

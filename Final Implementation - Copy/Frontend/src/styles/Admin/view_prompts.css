@@ -1,0 +1,67 @@
+/* General styling for the view prompts page */
+body {
+    
+  background-color: #eaecee;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Logo Section */
+  .logo {
+    width: 100px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Prompts Table styling */
+  .table {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden; /* Ensures rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .table td {
+    font-weight: 500;
+  }
+  
+  /* Footer Section */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: #fff;
+    margin-top: auto; /* Ensures footer is at the bottom */
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 576px) {
+    header h1 {
+      font-size: 20px;
+    }
+  
+    .logo {
+      width: 80px;
+    }
+  
+    .table th, .table td {
+      font-size: 14px;
+    }
+  }
+  
