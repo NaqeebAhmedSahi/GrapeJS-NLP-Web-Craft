@@ -16,12 +16,22 @@ const PageSchema = new mongoose.Schema(
     content: Object,
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'User', // Assuming you have a User model
+      ref: 'User', // Reference to the User model
       required: true,
+    },
+    websiteId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Website', // Reference to the Website model
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ['new', 'existing'], // Allow only 'new' or 'existing' values
+      default: 'new', // Set default status to 'new' for newly created pages
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Automatically handle createdAt and updatedAt fields
   },
 );
 

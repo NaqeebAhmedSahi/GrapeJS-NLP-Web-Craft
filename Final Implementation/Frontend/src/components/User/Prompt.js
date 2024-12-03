@@ -52,7 +52,7 @@ const Prompt = () => {
               <div className="input-group">
                 <input type="text" id="website-input" className="form-control" placeholder="e.g., 'I want to build an e-commerce site for handmade crafts that includes product categories, user reviews, and a shopping cart.'" aria-label="Project Details" aria-describedby="submit-btn" />
                 <div className="input-group-append">
-                  <button onClick={() => navigate('/home')} className="btn btn-primary mt-1" type="button" id="submit-btn">
+                  <button onClick={() => navigate('/websites')} className="btn btn-primary mt-1" type="button" id="submit-btn">
                     <ion-icon name="send-outline"></ion-icon>
                   </button>
                 </div>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import AdminHeader from './AdminHeader';
-import '../../styles/Admin/users.css'
+import '../../styles/Admin/users.css';
 
 const Users = () => {
   const [users, setUsers] = useState([]);

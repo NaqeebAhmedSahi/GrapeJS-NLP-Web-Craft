@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminHeader from './AdminHeader';
-import '../../styles/Admin/view_prompts.css'
+import '../../styles/Admin/view_prompts.css';
 
 const ViewPrompts = () => {
   // Sample prompts data stored in state (replace with API data)

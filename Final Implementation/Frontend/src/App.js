@@ -21,6 +21,7 @@ import ProtectedRoute from './components/ProtectedRoute'; // Import your Protect
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import ManagePages from './components/Admin/ManagePages';
 import UpdatePage from './components/Admin/UpdatePage';
+import WebsiteList from './components/User/WebsiteList';
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
         <Route path="/view_prompts" element={<AdminProtectedRoute element={<ViewPrompts />} />} />
         <Route path="/manage-pages/:websiteId" element={<ManagePages />} />
         <Route path="/updatePage/:websiteId/:pageName" element={<UpdatePage />} /> {/* Define the route for UpdatePage */}
+        <Route path="/manage-pages/:websiteId" element={<ManagePages />} />
+        <Route path="/websites" element={<WebsiteList/>} />
+
     
         
         {/* Only accessible if user is a superadmin */}

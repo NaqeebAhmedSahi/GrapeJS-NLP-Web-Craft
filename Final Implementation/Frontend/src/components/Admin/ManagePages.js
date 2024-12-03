@@ -5,29 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ManagePages = () => {
   const { websiteId } = useParams();
-  const [pages, setPages] = useState([]); // Initialize as empty array
+  const [pages, setPages] = useState([]);
   const [pageName, setPageName] = useState('');
   const [htmlFileName, setHtmlFileName] = useState('');
   const [htmlContent, setHtmlContent] = useState('');
   const [cssFileName, setCssFileName] = useState('');
   const [cssContent, setCssContent] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const [selectedPage, setSelectedPage] = useState(null); // To hold the selected page data for update
-  const [updateOption, setUpdateOption] = useState('code'); // Option to choose between file upload or code editing
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the pages for the current website
-    console.log('Fetching pages for websiteId:', websiteId); // Log the websiteId being fetched
-    axios.get(`http://localhost:8080/api/page/${websiteId}`)
-      .then(response => {
-        console.log('Response from backend:', response.data); // Log the data received from the backend
-        setPages(response.data || []); // Ensure pages are set correctly as an array
-      })
-      .catch(error => {
-        console.error('Error fetching pages:', error); // Log any errors
-      });
-  }, [websiteId]); // Re-fetch pages if the websiteId changes
+    axios
+      .get(`http://localhost:8080/api/page/${websiteId}`)
+      .then(response => setPages(response.data || []))
+      .catch(error => console.error('Error fetching pages:', error));
+  }, [websiteId]);
 
   const handleHtmlFileChange = (e) => {
     const file = e.target.files[0];
@@ -38,7 +29,6 @@ const ManagePages = () => {
       reader.readAsText(file);
     }
   };
-
 
   const handleCssFileChange = (e) => {
     const file = e.target.files[0];
@@ -52,13 +42,14 @@ const ManagePages = () => {
 
   const addPage = (event) => {
     event.preventDefault();
-    axios.post(`http://localhost:8080/api/page/${websiteId}`, {
-      pageName,
-      htmlFileName,
-      htmlContent,
-      cssFileName,
-      cssContent,
-    })
+    axios
+      .post(`http://localhost:8080/api/page/${websiteId}`, {
+        pageName,
+        htmlFileName,
+        htmlContent,
+        cssFileName,
+        cssContent,
+      })
       .then(response => {
         setPages([...pages, response.data]);
         alert('Page added successfully!');
@@ -73,7 +64,8 @@ const ManagePages = () => {
 
   const deletePage = (pageName) => {
     if (window.confirm('Are you sure you want to delete this page?')) {
-      axios.delete(`http://localhost:8080/api/page/${websiteId}/${pageName}`)
+      axios
+        .delete(`http://localhost:8080/api/page/${websiteId}/${pageName}`)
         .then(() => {
           setPages(pages.filter(page => page.pageName !== pageName));
           alert('Page deleted successfully');
@@ -82,38 +74,10 @@ const ManagePages = () => {
     }
   };
 
-  const handleUpdatePage = (page) => {
-  // Navigate to the UpdatePage component with the selected page's data
-  navigate(`/updatePage/${websiteId}/${page.pageName}`, { state: page });
-};
-
-  const handleUpdate = (event) => {
-    event.preventDefault();
-
-    // Prepare the updated data
-    const updatedData = {
-      htmlContent: updateOption === 'code' ? htmlContent : selectedPage.htmlContent,
-      cssContent: updateOption === 'code' ? cssContent : selectedPage.cssContent,
-    };
-
-    if (updateOption === 'file') {
-      // Option to upload files
-      updatedData.htmlFileName = htmlFileName;
-      updatedData.cssFileName = cssFileName;
-    }
-
-    axios.put(`http://localhost:8080/api/page/${websiteId}/${selectedPage.pageName}`, updatedData)
-      .then(response => {
-        setPages(pages.map(page => (page.pageName === selectedPage.pageName ? response.data : page)));
-        alert('Page updated successfully!');
-        setShowModal(false); // Close the modal after updating
-      })
-      .catch(error => console.error('Error updating page:', error));
-  };
-
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Manage Pages</h2>
+
       <form onSubmit={addPage} className="mb-4">
         <div className="form-group">
           <label htmlFor="pageName">Page Name:</label>
@@ -137,7 +101,7 @@ const ManagePages = () => {
             onChange={handleHtmlFileChange}
             required
           />
-          {htmlFileName && <p>Selected HTML File: {htmlFileName}</p>}
+          <small className="text-muted">Accepted format: .html</small>
         </div>
 
         <div className="form-group">
@@ -149,7 +113,7 @@ const ManagePages = () => {
             accept=".css"
             onChange={handleCssFileChange}
           />
-          {cssFileName && <p>Selected CSS File: {cssFileName}</p>}
+          <small className="text-muted">Accepted format: .css</small>
         </div>
 
         <div className="form-group">
@@ -157,6 +121,7 @@ const ManagePages = () => {
           <textarea
             className="form-control"
             id="htmlContent"
+            rows="8"
             value={htmlContent}
             onChange={(e) => setHtmlContent(e.target.value)}
             required
@@ -168,6 +133,7 @@ const ManagePages = () => {
           <textarea
             className="form-control"
             id="cssContent"
+            rows="8"
             value={cssContent}
             onChange={(e) => setCssContent(e.target.value)}
           />
@@ -176,37 +142,46 @@ const ManagePages = () => {
         <button type="submit" className="btn btn-primary mt-3">Add Page</button>
       </form>
 
-      <h4>Existing Pages:</h4>
-      
-      <ul className="list-group">
-        {pages && pages.length > 0 ? (
-          pages.map((page, index) => (
-            <li key={index} className="list-group-item">
-              <strong>{page.pageName}</strong>
-              <br />
-              <small>HTML File: {page.htmlFileName}</small><br />
-              <small>CSS File: {page.cssFileName}</small><br />
-              <button
-                onClick={() => handleUpdatePage(page)}
-                className="btn btn-secondary btn-sm float-right ml-2"
-            >
-                Update
-            </button>
-              <button
-                onClick={() => deletePage(page.pageName)}
-                className="btn btn-danger btn-sm float-right ml-2"
-              >
-                Delete
-              </button>
-
-            </li>
-          ))
-        ) : (
-          <p>No pages found.</p>
-        )}
-      </ul>
-
-      
+      <h4 className="mt-5">Existing Pages:</h4>
+      {pages && pages.length > 0 ? (
+        <table className="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Page Name</th>
+              <th>HTML File</th>
+              <th>CSS File</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pages.map((page, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{page.pageName}</td>
+                <td>{page.htmlFileName || 'N/A'}</td>
+                <td>{page.cssFileName || 'N/A'}</td>
+                <td>
+                  <button
+                    className="btn btn-secondary btn-sm mr-2"
+                    onClick={() => navigate(`/updatePage/${websiteId}/${page.pageName}`)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => deletePage(page.pageName)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="text-muted mt-3">No pages found.</p>
+      )}
     </div>
   );
 };

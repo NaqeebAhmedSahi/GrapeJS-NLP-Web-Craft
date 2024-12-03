@@ -7,6 +7,7 @@ import {
   details,
   list,
   loadContent,
+  storePagesController,
 } from './page.controller';
 
 const pageRoute = express.Router();
@@ -19,6 +20,10 @@ pageRoute.delete('/:pageId', deletePageRecord);
 
 pageRoute.get('/:pageId', details);
 pageRoute.get('/', list);
+// Route to store pages from a website
+pageRoute.post('/store', storePagesController);
+
+
 pageRoute.get('/:pageId/content', loadContent);
 
 export default pageRoute;

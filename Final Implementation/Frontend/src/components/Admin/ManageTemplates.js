@@ -54,68 +54,61 @@ const ManageTemplates = () => {
   };
 
   return (
-    <div className="manage">
+    <div className="manage bg-light">
       <AdminHeader />
-      <div className="container mt-4 mb-5">
-        <h2 className="text-center mb-4">Manage Website Templates</h2>
+      <div className="container mt-4 mb-5 p-4 rounded shadow-sm bg-white">
+        <h2 className="text-center mb-4 text-primary">Manage Website Templates</h2>
 
         {/* Form to add a new website */}
         <form onSubmit={addWebsite} className="mb-4">
           <div className="form-group">
-            <label htmlFor="websiteName">Website Name:</label>
+            <label htmlFor="websiteName" className="font-weight-bold">Website Name:</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control border-primary"
               id="websiteName"
               value={websiteName}
               onChange={(e) => setWebsiteName(e.target.value)}
+              placeholder="Enter website name"
               required
             />
           </div>
-          <button type="submit" className="btn btn-success">Add Website</button>
+          <button type="submit" className="btn btn-success btn-block">Add Website</button>
         </form>
 
         {/* Table displaying existing websites */}
-        <h3>Existing Websites:</h3>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Website Name</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {websites.map((website) => (
-              <tr key={website._id}>
-                <td>
-                  {/* Editable website name */}
-                  <input
-                    type="text"
-                    value={website.name}
-                    onChange={(e) => updateWebsite(website._id, e.target.value)}
-                    className="form-control"
-                  />
-                </td>
-                <td>
-                  {/* Delete button */}
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => deleteWebsite(website._id)}
-                  >
-                    Delete
-                  </button>
-                  {/* Navigate to manage pages for this website */}
-                  <button
-                    className="btn btn-primary btn-sm ml-2"
-                    onClick={() => navigate(`/manage-pages/${website._id}`)}
-                  >
-                    Manage Pages
-                  </button>
-                </td>
+        <h3 className="mb-3 text-secondary">Existing Websites:</h3>
+        <div className="table-responsive">
+          <table className="table table-hover table-bordered">
+            <thead className="thead-dark">
+              <tr>
+                <th>Website Name</th>
+                <th className="text-center">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {websites.map((website) => (
+                <tr key={website._id}>
+                  <td className="align-middle">{website.name}</td>
+                  <td className="text-center align-middle">
+                    <button
+                      className="btn btn-danger btn-sm mr-2"
+                      onClick={() => deleteWebsite(website._id)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      onClick={() => navigate(`/manage-pages/${website._id}`)}
+                    >
+                      Manage Pages
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -23,7 +23,14 @@ const Home = () => {
     }
 
     const userId = localStorage.getItem('userId'); // Ensure userId is stored correctly
-    dispatch(createPage({ name, userId }));
+    const websiteId = localStorage.getItem('selectedWebsiteId'); // Retrieve websiteId from local storage
+    if (!websiteId) {
+      console.error("Website ID is undefined");
+      return;
+    }
+
+    // Dispatch createPage action with name, userId, and websiteId
+    dispatch(createPage({ name, userId, websiteId }));
     setName(""); // Clear the input field after submission
     setIsValid(true); // Reset validity
   };
